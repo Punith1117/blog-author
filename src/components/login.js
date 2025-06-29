@@ -1,19 +1,28 @@
-export const login = () => {
+import { loginQuery } from "../apiQueries"
+import { handleLoginDisplay } from "../component-display-handlers/login"
+import { handlePostsDisplay } from "../component-display-handlers/posts"
+import { destroyJwt, destroyUsername, saveJwt, saveUsername } from "../utilities"
+
+export const login = (error) => {
     let loginForm = document.createElement('form')
 
         let heading = document.createElement('h3')
         heading.textContent = 'Login'
 
+        let errorMessage = document.createElement('p')
+        errorMessage.textContent = error
         let usernameLabel = document.createElement('label')
         usernameLabel.textContent = 'Username:'
             let username = document.createElement('input')
             username.type = 'text'
-        usernameLabel.appendChild(username)
-
-        let passwordLabel = document.createElement('label')
-        passwordLabel.textContent = 'Password:'
+            username.name = 'username'
+            usernameLabel.appendChild(username)
+            
+            let passwordLabel = document.createElement('label')
+            passwordLabel.textContent = 'Password:'
             let password = document.createElement('input')
             password.type = 'password'
+            password.name = 'password'
         passwordLabel.appendChild(password)
 
         let submit = document.createElement('button')
@@ -22,9 +31,29 @@ export const login = () => {
         let cancel = document.createElement('button')
         cancel.textContent = 'cancel'
     loginForm.appendChild(heading)
+    loginForm.appendChild(errorMessage)
     loginForm.appendChild(usernameLabel)
     loginForm.appendChild(passwordLabel)
     loginForm.appendChild(cancel)
     loginForm.appendChild(submit)
+    loginForm.addEventListener('submit', handleFormSubmit)
     return loginForm
+}
+
+const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    const form = document.querySelector('form')
+    const username = form.elements['username'].value
+    const password = form.elements['password'].value
+    try {
+        const responseObject = await loginQuery(username, password)
+        saveJwt(responseObject.token)
+        saveUsername(responseObject.user.username)
+        handlePostsDisplay(false)
+    } catch(e) {
+        destroyJwt()
+        destroyUsername()
+        console.warn(e.message)
+        handleLoginDisplay(e.message)
+    }
 }
