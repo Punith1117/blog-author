@@ -8,12 +8,10 @@ export const loginQuery = async (username, password) => {
             username,
             password
         })
-    }).then(res => {
-        if (!res.ok) {
-            throw new Error('Invalid Credentials')
-        }
-        return res.json()
-    })
+    }).then(res => res.json()).catch(e => {
+        if (e.message == 'Invalid credentials')
+            throw new Error(e.message)
+        })
     return responseObject
 }
 
@@ -25,7 +23,7 @@ export const getPostsQuery = async (jwt, isPublished) => {
         }
     }).then(res => {
         if (!res.ok)
-            throw new Error('Failed to fetch user posts')
+            throw new Error(res.status)
         return res.json()
     })
     return responseObject
