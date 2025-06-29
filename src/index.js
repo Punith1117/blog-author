@@ -2,11 +2,11 @@ import { header } from "./components/header";
 import { login } from "./components/login";
 import "./reset.css";
 import "./style.css";
-import { getJwtFromStorage } from "./utilities";
+import { getJwt } from "./utilities";
 
 export const initialRenderLogic = () => {
     let body = document.querySelector('body')
-    if (getJwtFromStorage() == null) {
+    if (getJwt() == null) {
         body.replaceChildren(header(), login())
     }
 }
