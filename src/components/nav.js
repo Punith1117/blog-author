@@ -4,7 +4,10 @@ export const nav = () => {
         publishedPostsButton.textContent = 'Published Posts'
         const unpublishedPostsButton = document.createElement('button')
         unpublishedPostsButton.textContent = 'Unpublished Posts'
+        const newPostButton = document.createElement('button')
+        newPostButton.textContent = 'New'
     navbar.appendChild(publishedPostsButton)
     navbar.appendChild(unpublishedPostsButton)
+    navbar.appendChild(newPostButton)
     return navbar
 }
