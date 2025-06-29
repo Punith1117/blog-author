@@ -1,13 +1,14 @@
-import { header } from "./components/header";
-import { login } from "./components/login";
+import { handleLoginDisplay } from "./component-display-handlers/login";
+import { handlePostsDisplay } from "./component-display-handlers/posts";
 import "./reset.css";
 import "./style.css";
 import { getJwt } from "./utilities";
 
 export const initialRenderLogic = () => {
-    let body = document.querySelector('body')
     if (getJwt() == null) {
-        body.replaceChildren(header(), login())
+        handleLoginDisplay()
+    } else {
+        handlePostsDisplay(false)
     }
 }
 
