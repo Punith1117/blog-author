@@ -16,3 +16,17 @@ export const loginQuery = async (username, password) => {
     })
     return responseObject
 }
+
+export const getPostsQuery = async (jwt, isPublished) => {
+    const responseObject = fetch(`http://localhost:3000/user/me/post?isPublished=${isPublished}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${jwt}`
+        }
+    }).then(res => {
+        if (!res.ok)
+            throw new Error('Failed to fetch user posts')
+        return res.json()
+    })
+    return responseObject
+}
