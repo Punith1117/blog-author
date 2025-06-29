@@ -8,10 +8,12 @@ export const loginQuery = async (username, password) => {
             username,
             password
         })
-    }).then(res => res.json()).catch(e => {
-        if (e.message == 'Invalid credentials')
-            throw new Error(e.message)
-        })
+    }).then(res => {
+        if (!res.ok) {
+            throw new Error('Invalid credentials')
+        }
+        return res.json()
+    })
     return responseObject
 }
 
