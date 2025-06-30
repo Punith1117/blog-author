@@ -1,6 +1,7 @@
 import { getPostQuery } from "../apiQueries"
 import { newEditPostForm } from "../components/new-edit-post-form"
 import { getJwt } from "../utilities"
+import { handleLoginDisplay } from "./login"
 
 export const handleNewEditPost = async (id) => {
     let nav = document.querySelector('nav')
@@ -15,11 +16,11 @@ export const handleNewEditPost = async (id) => {
         try {
             object = await getPostQuery(jwt, id)
             post = object.posts
+            body.appendChild(newEditPostForm(post))
         } catch (e) {
             if (e.message == 401) {
-                console.log('Login again')
+                handleLoginDisplay('Session expired after 2min. Login again')
             }
         }
-        body.appendChild(newEditPostForm(post))
     }
 }
