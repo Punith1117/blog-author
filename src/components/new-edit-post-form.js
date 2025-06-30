@@ -84,7 +84,5 @@ const handleEditPost = async (e, id) => {
             handleLoginDisplay('Session expired after 2min. Login again')
         return
     }
-    setTimeout(async () => {// For reason unknown, the un-modified posts were fetched(The api and front end handles asynchronous code fine). To fix this, setTimeOut has been used
-        await handlePostsDisplay(isPublished)
-    }, 200)
+    await handlePostsDisplay(isPublished)
 }
