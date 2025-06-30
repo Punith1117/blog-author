@@ -63,3 +63,22 @@ export const modifyPostQuery = async (jwt, id, postDetails) => {
             throw new Error(res.status)
     })
 }
+
+export const newPostQuery = async (jwt, postDetails) => {
+    const {title, content, isPublished} = postDetails
+    await fetch(`http://localhost:3000/user/me/post/`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${jwt}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title,
+            content,
+            isPublished
+        })
+    }).then(res => {
+        if (!res.ok)
+            throw new Error(res.status)
+    })
+}
