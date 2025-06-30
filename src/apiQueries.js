@@ -44,3 +44,22 @@ export const getPostQuery = async (jwt, id) => {
     })
     return responseObject
 }
+
+export const modifyPostQuery = async (jwt, id, postDetails) => {
+    const {title, content, isPublished} = postDetails
+    fetch(`http://localhost:3000/user/me/post/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `Bearer ${jwt}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title,
+            content,
+            isPublished
+        })
+    }).then(res => {
+        if (!res.ok)
+            throw new Error(res.status)
+    })
+}
