@@ -1,3 +1,4 @@
+import { handleNewEditPost } from "../component-display-handlers/new-edit-post"
 import { handlePostsDisplay } from "../component-display-handlers/posts"
 
 export const nav = () => {
@@ -10,6 +11,9 @@ export const nav = () => {
         unpublishedPostsButton.addEventListener('click', () => handlePostsDisplay(false))
         const newPostButton = document.createElement('button')
         newPostButton.textContent = 'New'
+        newPostButton.addEventListener('click', () => {
+            handleNewEditPost()
+        })
     navbar.appendChild(publishedPostsButton)
     navbar.appendChild(unpublishedPostsButton)
     navbar.appendChild(newPostButton)
