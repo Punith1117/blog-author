@@ -42,6 +42,7 @@ export const newEditPostForm = (formData) => {
         let cancelButton = document.createElement('button')
         cancelButton.textContent = 'Cancel'
         cancelButton.type = 'button'
+        cancelButton.addEventListener('click', () => handlePostsDisplay(formData?.isPublished))
         let submitButton = document.createElement('button')
         submitButton.textContent = 'Submit'
         submitButton.type = 'submit'
