@@ -1,7 +1,7 @@
 export const viewPost = (post) => {
     let main = document.createElement('main')
     main.dataset.id = post.id
-        let title = document.createElement('h2')
+        let title = document.createElement('h3')
         title.textContent = post.title
         let content = document.createElement('p')
         content.textContent = post.content
