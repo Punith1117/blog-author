@@ -1,4 +1,4 @@
-import { modifyPostQuery } from "../apiQueries"
+import { modifyPostQuery, newPostQuery } from "../apiQueries"
 import { handleLoginDisplay } from "../component-display-handlers/login"
 import { handlePostsDisplay } from "../component-display-handlers/posts"
 import { getJwt } from "../utilities"
@@ -54,8 +54,10 @@ export const newEditPostForm = (formData) => {
                 trueOption.checked = true
             else
                 falseOption.checked = true
-            form.addEventListener('submit', (e) => handleEditPost(e, formData.id))
-        }
+            form.addEventListener('submit', (e) => handleNewEditPost(e, formData.id))
+        } else
+            form.addEventListener('submit', (e) => handleNewEditPost(e))
+
     form.appendChild(heading)
     form.appendChild(titleLabel)
     form.appendChild(contentLabel)
@@ -65,7 +67,7 @@ export const newEditPostForm = (formData) => {
     return form
 }
 
-const handleEditPost = async (e, id) => {
+const handleNewEditPost = async (e, id) => {
     e.preventDefault()
     const form = e.target
     const title = form.elements['title'].value
@@ -78,9 +80,12 @@ const handleEditPost = async (e, id) => {
         isPublished
     }
     try {
-        await modifyPostQuery(jwt, id, formDetails)
+        if (id == undefined)
+            await newPostQuery(jwt, formDetails)
+        else
+            await modifyPostQuery(jwt, id, formDetails)
     } catch (e) {
-        if (e.message == 404)
+        if (e.message == 401)
             handleLoginDisplay('Session expired after 2min. Login again')
         return
     }
