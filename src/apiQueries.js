@@ -1,5 +1,5 @@
 export const loginQuery = async (username, password) => {
-    const responseObject = fetch('http://localhost:3000/auth/login', {
+    const responseObject = await fetch('http://localhost:3000/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -18,7 +18,7 @@ export const loginQuery = async (username, password) => {
 }
 
 export const getPostsQuery = async (jwt, isPublished) => {
-    const responseObject = fetch(`http://localhost:3000/user/me/post?isPublished=${isPublished}`, {
+    const responseObject = await fetch(`http://localhost:3000/user/me/post?isPublished=${isPublished}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${jwt}`
@@ -32,7 +32,7 @@ export const getPostsQuery = async (jwt, isPublished) => {
 }
 
 export const getPostQuery = async (jwt, id) => {
-    const responseObject = fetch(`http://localhost:3000/user/me/post/${id}`, {
+    const responseObject = await fetch(`http://localhost:3000/user/me/post/${id}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${jwt}`
@@ -47,7 +47,7 @@ export const getPostQuery = async (jwt, id) => {
 
 export const modifyPostQuery = async (jwt, id, postDetails) => {
     const {title, content, isPublished} = postDetails
-    fetch(`http://localhost:3000/user/me/post/${id}`, {
+    await fetch(`http://localhost:3000/user/me/post/${id}`, {
         method: 'PUT',
         headers: {
             'Authorization': `Bearer ${jwt}`,
