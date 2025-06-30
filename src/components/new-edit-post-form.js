@@ -8,11 +8,13 @@ export const newEditPostForm = (formData) => {
             let title = document.createElement('input')
             title.type = 'text'
             title.required = 'true'
+            title.name = 'title'
         titleLabel.appendChild(title)
         let contentLabel = document.createElement('label')
         contentLabel.textContent = 'Content: '
             let content = document.createElement('textarea')
             content.required = 'true'
+            content.name = 'content'
         contentLabel.appendChild(content)
         let options = document.createElement('div')
         options.textContent = 'Publish Status: '
