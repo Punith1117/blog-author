@@ -1,3 +1,8 @@
+import { modifyPostQuery } from "../apiQueries"
+import { handleLoginDisplay } from "../component-display-handlers/login"
+import { handlePostsDisplay } from "../component-display-handlers/posts"
+import { getJwt } from "../utilities"
+
 export const newEditPostForm = (formData) => {
     let form = document.createElement('form')
     form.className = 'post'
@@ -49,6 +54,7 @@ export const newEditPostForm = (formData) => {
                 trueOption.checked = true
             else
                 falseOption.checked = true
+            form.addEventListener('submit', (e) => handleEditPost(e, formData.id))
         }
     form.appendChild(heading)
     form.appendChild(titleLabel)
@@ -57,4 +63,28 @@ export const newEditPostForm = (formData) => {
     form.appendChild(cancelButton)
     form.appendChild(submitButton)
     return form
+}
+
+const handleEditPost = async (e, id) => {
+    e.preventDefault()
+    const form = e.target
+    const title = form.elements['title'].value
+    const content = form.elements['content'].value
+    const isPublished = (form.elements['isPublished'].value == 'true') ? true : false
+    const jwt = getJwt()
+    const formDetails = {
+        title,
+        content,
+        isPublished
+    }
+    try {
+        await modifyPostQuery(jwt, id, formDetails)
+    } catch (e) {
+        if (e.message == 404)
+            handleLoginDisplay('Session expired after 2min. Login again')
+        return
+    }
+    setTimeout(async () => {// For reason unknown, the un-modified posts were fetched(The api and front end handles asynchronous code fine). To fix this, setTimeOut has been used
+        await handlePostsDisplay(isPublished)
+    }, 200)
 }
