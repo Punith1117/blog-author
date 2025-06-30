@@ -1,4 +1,5 @@
 import { handleNewEditPost } from "../component-display-handlers/new-edit-post"
+import { handleViewPost } from "../component-display-handlers/view-post"
 
 export const userPosts = (posts) => {
     let main = document.createElement('main')
@@ -12,6 +13,7 @@ export const userPosts = (posts) => {
             let utilities = document.createElement('div')
                 let viewButton = document.createElement('button')
                 viewButton.textContent = 'view'
+                viewButton.addEventListener('click', () => handleViewPost(postDetails.id))
                 let editButton = document.createElement('button')
                 editButton.textContent = 'edit'
                 editButton.addEventListener('click', () => handleNewEditPost(postDetails.id))
