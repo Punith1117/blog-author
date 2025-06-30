@@ -82,3 +82,15 @@ export const newPostQuery = async (jwt, postDetails) => {
             throw new Error(res.status)
     })
 }
+
+export const deletePostQuery = async (jwt, id) => {
+    await fetch(`http://localhost:3000/user/me/post/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${jwt}` 
+        }
+    }).then(res => {
+        if (!res.ok)
+            throw new Error(res.status)
+    })
+}
