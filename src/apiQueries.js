@@ -30,3 +30,17 @@ export const getPostsQuery = async (jwt, isPublished) => {
     })
     return responseObject
 }
+
+export const getPostQuery = async (jwt, id) => {
+    const responseObject = fetch(`http://localhost:3000/user/me/post/${id}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${jwt}`
+        }
+    }).then(res => {
+        if (!res.ok)
+            throw new Error(res.status)
+        return res.json()
+    })
+    return responseObject
+}
