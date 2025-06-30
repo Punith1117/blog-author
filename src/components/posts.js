@@ -1,3 +1,4 @@
+import { handleDeletePost } from "../component-display-handlers/delete-post"
 import { handleNewEditPost } from "../component-display-handlers/new-edit-post"
 import { handleViewPost } from "../component-display-handlers/view-post"
 
@@ -19,6 +20,7 @@ export const userPosts = (posts) => {
                 editButton.addEventListener('click', () => handleNewEditPost(postDetails.id))
                 let deleteButton = document.createElement('button')
                 deleteButton.textContent = 'delete'
+                deleteButton.addEventListener('click', () => handleDeletePost(postDetails.id, postDetails.isPublished))
             utilities.appendChild(viewButton)
             utilities.appendChild(editButton)
             utilities.appendChild(deleteButton)
