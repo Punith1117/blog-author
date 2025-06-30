@@ -1,3 +1,5 @@
+import { handleNewEditPost } from "../component-display-handlers/new-edit-post"
+
 export const userPosts = (posts) => {
     let main = document.createElement('main')
     posts.forEach(postDetails => {
@@ -12,6 +14,7 @@ export const userPosts = (posts) => {
                 viewButton.textContent = 'view'
                 let editButton = document.createElement('button')
                 editButton.textContent = 'edit'
+                editButton.addEventListener('click', () => handleNewEditPost(postDetails.id))
                 let deleteButton = document.createElement('button')
                 deleteButton.textContent = 'delete'
             utilities.appendChild(viewButton)
