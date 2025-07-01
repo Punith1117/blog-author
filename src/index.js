@@ -1,6 +1,7 @@
 import { handleLoginDisplay } from "./component-display-handlers/login";
 import { handlePostsDisplay } from "./component-display-handlers/posts";
 import "./styles/reset.css";
+import "./styles/header.css";
 import { getJwt } from "./utilities";
 
 export const initialRenderLogic = () => {
