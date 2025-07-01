@@ -12,8 +12,10 @@ export const handleViewPost = async (id) => {
         const object = await getPostQuery(jwt, id)
         post = object.posts
     } catch (e) {
-        if (e.message == 401)
+        if (e.message == 401)  {
             handleLoginDisplay('Session expired after 2min. Login again')
+            return
+        }
     }
     let body = document.querySelector('body')
     body.replaceChildren(header(getUsername()), nav(post.isPublished), viewPost(post))
