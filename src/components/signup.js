@@ -15,12 +15,14 @@ export const signup = (err) => {
             const username = document.createElement('input')
             username.type = 'text'
             username.name = 'username'
+            username.required = 'true'
         usernameLabel.appendChild(username)
         const passwordLabel = document.createElement('label')
         passwordLabel.textContent = 'Password: '
             const password = document.createElement('input')
             password.type = 'password'
             password.name = 'password'
+            password.required = 'true'
         passwordLabel.appendChild(password)
         const cancelButton = document.createElement('button')
         cancelButton.type = 'button'

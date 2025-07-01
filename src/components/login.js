@@ -18,13 +18,14 @@ export const login = (error) => {
             let username = document.createElement('input')
             username.type = 'text'
             username.name = 'username'
-            usernameLabel.appendChild(username)
-            
+            username.required = 'true'
+        usernameLabel.appendChild(username)
             let passwordLabel = document.createElement('label')
             passwordLabel.textContent = 'Password:'
             let password = document.createElement('input')
             password.type = 'password'
             password.name = 'password'
+            password.required = 'true'
         passwordLabel.appendChild(password)
 
         let submit = document.createElement('button')
