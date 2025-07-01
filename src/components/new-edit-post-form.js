@@ -1,7 +1,4 @@
-import { modifyPostQuery, newPostQuery } from "../apiQueries"
-import { handleLoginDisplay } from "../component-display-handlers/login"
 import { handlePostsDisplay } from "../component-display-handlers/posts"
-import { getJwt } from "../utilities"
 
 export const newEditPostForm = (formData) => {
     let form = document.createElement('form')
@@ -15,12 +12,8 @@ export const newEditPostForm = (formData) => {
             title.required = 'true'
             title.name = 'title'
         titleLabel.appendChild(title)
-        let contentLabel = document.createElement('label')
-        contentLabel.textContent = 'Content: '
-            let content = document.createElement('textarea')
-            content.required = 'true'
-            content.name = 'content'
-        contentLabel.appendChild(content)
+        let content = document.createElement('div')
+        content.className = 'content'
         let options = document.createElement('div')
         options.textContent = 'Publish Status: '
             let trueOptionLabel = document.createElement('label')
@@ -55,40 +48,12 @@ export const newEditPostForm = (formData) => {
                 trueOption.checked = true
             else
                 falseOption.checked = true
-            form.addEventListener('submit', (e) => handleNewEditPost(e, formData.id))
-        } else
-            form.addEventListener('submit', (e) => handleNewEditPost(e))
-
+        }
     form.appendChild(heading)
     form.appendChild(titleLabel)
-    form.appendChild(contentLabel)
+    form.appendChild(content)
     form.appendChild(options)
     form.appendChild(cancelButton)
     form.appendChild(submitButton)
     return form
-}
-
-const handleNewEditPost = async (e, id) => {
-    e.preventDefault()
-    const form = e.target
-    const title = form.elements['title'].value
-    const content = form.elements['content'].value
-    const isPublished = (form.elements['isPublished'].value == 'true') ? true : false
-    const jwt = getJwt()
-    const formDetails = {
-        title,
-        content,
-        isPublished
-    }
-    try {
-        if (id == undefined)
-            await newPostQuery(jwt, formDetails)
-        else
-            await modifyPostQuery(jwt, id, formDetails)
-    } catch (e) {
-        if (e.message == 401)
-            handleLoginDisplay('Session expired after 2min. Login again')
-        return
-    }
-    await handlePostsDisplay(isPublished)
 }
