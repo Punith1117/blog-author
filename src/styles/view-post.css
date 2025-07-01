@@ -1,0 +1,29 @@
+.view-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(183, 255, 183);
+    padding: 1rem;
+    gap: 10px;
+
+    .title {
+        font-size: max(1.4rem, 1.2vw);
+    }
+
+    .utilities {
+        display: flex;
+        gap: 5px;
+
+        button {
+            border: none;
+            box-shadow: 3px 3px 5px black;
+            background-color: #fff;
+        }
+
+        .delete {
+            color: white;
+            background-color: rgb(248, 82, 82);
+        }
+    }
+}
