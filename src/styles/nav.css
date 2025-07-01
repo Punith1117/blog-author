@@ -1,0 +1,18 @@
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+    gap: 1vw;
+
+    button {
+        flex: 1
+    }
+    button:last-child {
+        background-color: rgb(134, 235, 134);
+    }
+    .current-tab {
+        color: white;
+        background-color: rgb(136, 188, 248);
+    }
+}
