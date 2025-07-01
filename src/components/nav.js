@@ -1,7 +1,7 @@
 import { handleNewEditPost } from "../component-display-handlers/new-edit-post"
 import { handlePostsDisplay } from "../component-display-handlers/posts"
 
-export const nav = () => {
+export const nav = (isPublished) => {
     const navbar = document.createElement('nav')
         const publishedPostsButton = document.createElement('button')
         publishedPostsButton.addEventListener('click', () => handlePostsDisplay(true))
@@ -14,6 +14,10 @@ export const nav = () => {
         newPostButton.addEventListener('click', () => {
             handleNewEditPost()
         })
+    if (isPublished)
+        publishedPostsButton.className = 'current-tab'
+    else
+        unpublishedPostsButton.className = 'current-tab'
     navbar.appendChild(publishedPostsButton)
     navbar.appendChild(unpublishedPostsButton)
     navbar.appendChild(newPostButton)
