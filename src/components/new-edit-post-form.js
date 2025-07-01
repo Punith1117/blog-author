@@ -2,12 +2,13 @@ import { handlePostsDisplay } from "../component-display-handlers/posts"
 
 export const newEditPostForm = (formData) => {
     let form = document.createElement('form')
-    form.className = 'post'
-        let heading = document.createElement('h1')
+    form.className = 'new-edit-form'
+        let heading = document.createElement('h3')
         heading.textContent = 'New post'
         let titleLabel = document.createElement('label')
         titleLabel.textContent = 'Title: '
             let title = document.createElement('input')
+            title.className = 'title'
             title.type = 'text'
             title.required = 'true'
             title.name = 'title'

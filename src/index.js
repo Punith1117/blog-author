@@ -4,6 +4,7 @@ import "./styles/reset.css";
 import "./styles/header.css";
 import "./styles/nav.css";
 import "./styles/posts.css";
+import "./styles/new-edit-form.css";
 import { getJwt } from "./utilities";
 
 export const initialRenderLogic = () => {

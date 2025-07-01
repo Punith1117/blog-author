@@ -1,0 +1,30 @@
+.new-edit-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    .title {
+        width: 40vw;
+        font-size: 1.3rem;
+    }
+
+    .content {
+        height: 40vh;
+        width: 60vw;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .new-edit-form {
+        .title {
+            width: 80vw;
+        }
+    
+        .content {
+            width: 90vw;
+        }
+    }
+}
