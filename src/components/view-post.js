@@ -8,7 +8,7 @@ export const viewPost = (post) => {
         let title = document.createElement('h3')
         title.textContent = post.title
         let content = document.createElement('p')
-        content.textContent = post.content
+        content.innerHTML = post.content
         let publishStatus = document.createElement('p')
         publishStatus.textContent = 'Publish Status: ' + post.isPublished
         let utilities = document.createElement('div')
