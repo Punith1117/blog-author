@@ -10,7 +10,7 @@ export const userPosts = (posts) => {
             let title = document.createElement('h4')
             title.textContent = postDetails.title
             let content = document.createElement('p')
-            content.textContent = postDetails.content
+            content.innerHTML = postDetails.content
             let utilities = document.createElement('div')
                 let viewButton = document.createElement('button')
                 viewButton.textContent = 'view'

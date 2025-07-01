@@ -4,6 +4,7 @@ import { nav } from "../components/nav"
 import { userPosts } from "../components/posts"
 import { getJwt, getUsername } from "../utilities"
 import { handleLoginDisplay } from "./login"
+import htmlTruncate from 'html-truncate'
 
 export const handlePostsDisplay = async (isPublished) => {
     const jwt = getJwt()
@@ -11,6 +12,12 @@ export const handlePostsDisplay = async (isPublished) => {
         handleLoginDisplay()
     try {
         let { posts } = await getPostsQuery(jwt, isPublished)
+        posts = posts.map(post => {
+            return {
+                ...post,
+                content: htmlTruncate(post.content, 100)
+            }
+        })
         let body = document.querySelector('body')
         body.replaceChildren(header(getUsername()), nav(isPublished), userPosts(posts))
     } catch(e) {
