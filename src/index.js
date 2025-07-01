@@ -6,6 +6,7 @@ import "./styles/nav.css";
 import "./styles/posts.css";
 import "./styles/new-edit-form.css";
 import "./styles/view-post.css";
+import "./styles/login-signup.css";
 import { getJwt } from "./utilities";
 
 export const initialRenderLogic = () => {

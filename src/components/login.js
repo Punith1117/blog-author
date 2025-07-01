@@ -7,7 +7,7 @@ import { signup } from "./signup"
 
 export const login = (error) => {
     let loginForm = document.createElement('form')
-
+    loginForm.className = 'login-signup'
         let heading = document.createElement('h3')
         heading.textContent = 'Login'
 

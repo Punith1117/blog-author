@@ -4,6 +4,7 @@ import { header } from "./header"
 
 export const signup = (err) => {
     const form = document.createElement('form')
+    form.className = 'login-signup'
         const error = document.createElement('p')
         if (error != undefined) {
             error.textContent = err
