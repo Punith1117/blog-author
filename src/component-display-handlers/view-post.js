@@ -16,5 +16,5 @@ export const handleViewPost = async (id) => {
             handleLoginDisplay('Session expired after 2min. Login again')
     }
     let body = document.querySelector('body')
-    body.replaceChildren(header(getUsername()), nav(), viewPost(post))
+    body.replaceChildren(header(getUsername()), nav(post.isPublished), viewPost(post))
 }
