@@ -31,8 +31,6 @@ export const login = (error) => {
         let submit = document.createElement('button')
         submit.type = 'submit'
         submit.textContent = 'Login'
-        let cancel = document.createElement('button')
-        cancel.textContent = 'cancel'
         let signupButton = document.createElement('button')
         signupButton.textContent = 'Sign up'
         signupButton.addEventListener('click', () => handleSignupFormDisplay())
@@ -40,7 +38,6 @@ export const login = (error) => {
     loginForm.appendChild(errorMessage)
     loginForm.appendChild(usernameLabel)
     loginForm.appendChild(passwordLabel)
-    loginForm.appendChild(cancel)
     loginForm.appendChild(submit)
     loginForm.appendChild(signupButton)
     loginForm.addEventListener('submit', handleFormSubmit)
