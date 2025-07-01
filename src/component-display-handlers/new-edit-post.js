@@ -48,8 +48,6 @@ export const handleSubmit = async (e, id, quill) => {
         ALLOWED_TAGS: ['b', 'em', 'i', 'strong', 'br', 'hr', 's', 'u']
     })
     const isPublished = (form.elements['isPublished'].value == 'true') ? true : false
-    console.log(title)
-    console.log(content)
     const jwt = getJwt()
     const formDetails = {
         title,
