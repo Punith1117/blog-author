@@ -2,6 +2,8 @@ import { loginQuery } from "../apiQueries"
 import { handleLoginDisplay } from "../component-display-handlers/login"
 import { handlePostsDisplay } from "../component-display-handlers/posts"
 import { destroyJwt, destroyUsername, saveJwt, saveUsername } from "../utilities"
+import { header } from "./header"
+import { signup } from "./signup"
 
 export const login = (error) => {
     let loginForm = document.createElement('form')
@@ -30,12 +32,16 @@ export const login = (error) => {
         submit.textContent = 'Login'
         let cancel = document.createElement('button')
         cancel.textContent = 'cancel'
+        let signupButton = document.createElement('button')
+        signupButton.textContent = 'Sign up'
+        signupButton.addEventListener('click', () => handleSignupFormDisplay())
     loginForm.appendChild(heading)
     loginForm.appendChild(errorMessage)
     loginForm.appendChild(usernameLabel)
     loginForm.appendChild(passwordLabel)
     loginForm.appendChild(cancel)
     loginForm.appendChild(submit)
+    loginForm.appendChild(signupButton)
     loginForm.addEventListener('submit', handleFormSubmit)
     return loginForm
 }
@@ -56,4 +62,9 @@ const handleFormSubmit = async (e) => {
         console.warn(e.message)
         handleLoginDisplay(e.message)
     }
+}
+
+const handleSignupFormDisplay = () => {
+    const body = document.querySelector('body')
+    body.replaceChildren(header(), signup())
 }
