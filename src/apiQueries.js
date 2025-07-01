@@ -17,6 +17,22 @@ export const loginQuery = async (username, password) => {
     return responseObject
 }
 
+export const signupQuery = async (username, password) => {
+    await fetch('http://localhost:3000/auth/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username,
+            password
+        })
+    }).then(res => {
+        if (!res.ok)
+            throw new Error('Something went wrong')
+    })
+}
+
 export const getPostsQuery = async (jwt, isPublished) => {
     const responseObject = await fetch(`http://localhost:3000/user/me/post?isPublished=${isPublished}`, {
         method: 'GET',
