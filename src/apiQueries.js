@@ -1,5 +1,7 @@
+const URL = 'https://blog-api-p64x.onrender.com'
+
 export const loginQuery = async (username, password) => {
-    const responseObject = await fetch('http://localhost:3000/auth/login', {
+    const responseObject = await fetch(`${URL}/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -18,7 +20,7 @@ export const loginQuery = async (username, password) => {
 }
 
 export const signupQuery = async (username, password) => {
-    await fetch('http://localhost:3000/auth/signup', {
+    await fetch(`${URL}/auth/signup`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -34,7 +36,7 @@ export const signupQuery = async (username, password) => {
 }
 
 export const getPostsQuery = async (jwt, isPublished) => {
-    const responseObject = await fetch(`http://localhost:3000/user/me/post?isPublished=${isPublished}`, {
+    const responseObject = await fetch(`${URL}/user/me/post?isPublished=${isPublished}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${jwt}`
@@ -48,7 +50,7 @@ export const getPostsQuery = async (jwt, isPublished) => {
 }
 
 export const getPostQuery = async (jwt, id) => {
-    const responseObject = await fetch(`http://localhost:3000/user/me/post/${id}`, {
+    const responseObject = await fetch(`${URL}/user/me/post/${id}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${jwt}`
@@ -63,7 +65,7 @@ export const getPostQuery = async (jwt, id) => {
 
 export const modifyPostQuery = async (jwt, id, postDetails) => {
     const {title, content, isPublished} = postDetails
-    await fetch(`http://localhost:3000/user/me/post/${id}`, {
+    await fetch(`${URL}/user/me/post/${id}`, {
         method: 'PUT',
         headers: {
             'Authorization': `Bearer ${jwt}`,
@@ -82,7 +84,7 @@ export const modifyPostQuery = async (jwt, id, postDetails) => {
 
 export const newPostQuery = async (jwt, postDetails) => {
     const {title, content, isPublished} = postDetails
-    await fetch(`http://localhost:3000/user/me/post/`, {
+    await fetch(`${URL}/user/me/post/`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${jwt}`,
@@ -100,7 +102,7 @@ export const newPostQuery = async (jwt, postDetails) => {
 }
 
 export const deletePostQuery = async (jwt, id) => {
-    await fetch(`http://localhost:3000/user/me/post/${id}`, {
+    await fetch(`${URL}/user/me/post/${id}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${jwt}` 
