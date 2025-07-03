@@ -6,6 +6,7 @@ import Quill from "quill"
 import 'quill/dist/quill.snow.css'
 import DOMPurify from 'dompurify'
 import { handlePostsDisplay } from "./posts"
+import { displayLoading } from "../components/loading"
 
 export const handleNewEditPost = async (id) => {
     let nav = document.querySelector('nav')
@@ -43,6 +44,7 @@ export const handleNewEditPost = async (id) => {
 export const handleSubmit = async (e, id, quill) => {
     e.preventDefault()
     const form = e.target
+    displayLoading()
     const title = form.elements['title'].value
     const content = DOMPurify.sanitize(quill.root.innerHTML, {
         ALLOWED_TAGS: ['b', 'em', 'i', 'strong', 'br', 'hr', 's', 'u']

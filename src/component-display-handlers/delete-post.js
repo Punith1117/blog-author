@@ -1,9 +1,11 @@
 import { deletePostQuery } from "../apiQueries"
+import { displayLoading } from "../components/loading"
 import { getJwt } from "../utilities"
 import { handleLoginDisplay } from "./login"
 import { handlePostsDisplay } from "./posts"
 
 export const handleDeletePost = async (id, isPublished) => {
+    displayLoading()
     const jwt = getJwt()
     try {
         await deletePostQuery(jwt, id)

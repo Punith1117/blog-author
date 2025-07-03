@@ -1,5 +1,6 @@
 import { getPostsQuery } from "../apiQueries"
 import { header } from "../components/header"
+import { displayLoading } from "../components/loading"
 import { nav } from "../components/nav"
 import { userPosts } from "../components/posts"
 import { getJwt, getUsername } from "../utilities"
@@ -7,6 +8,7 @@ import { handleLoginDisplay } from "./login"
 import htmlTruncate from 'html-truncate'
 
 export const handlePostsDisplay = async (isPublished) => {
+    displayLoading()
     const jwt = getJwt()
     if (jwt == undefined)
         handleLoginDisplay()

@@ -1,11 +1,13 @@
 import { getPostQuery } from "../apiQueries"
 import { header } from "../components/header"
+import { displayLoading } from "../components/loading"
 import { nav } from "../components/nav"
 import { viewPost } from "../components/view-post"
 import { getJwt, getUsername } from "../utilities"
 import { handleLoginDisplay } from "./login"
 
 export const handleViewPost = async (id) => {
+    displayLoading()
     const jwt = getJwt()
     let post
     try {

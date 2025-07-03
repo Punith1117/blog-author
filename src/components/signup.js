@@ -1,6 +1,7 @@
 import { signupQuery } from "../apiQueries"
 import { handleLoginDisplay } from "../component-display-handlers/login"
 import { header } from "./header"
+import { displayLoading } from "./loading"
 
 export const signup = (err) => {
     const form = document.createElement('form')
@@ -45,6 +46,7 @@ export const signup = (err) => {
 const handleSignup = async (e) => {
     e.preventDefault()
     const form = e.target
+    displayLoading()
     const username = form.elements['username'].value
     const password = form.elements['password'].value
     try {

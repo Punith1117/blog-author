@@ -3,6 +3,7 @@ import { handleLoginDisplay } from "../component-display-handlers/login"
 import { handlePostsDisplay } from "../component-display-handlers/posts"
 import { destroyJwt, destroyUsername, saveJwt, saveUsername } from "../utilities"
 import { header } from "./header"
+import { displayLoading } from "./loading"
 import { signup } from "./signup"
 
 export const login = (error) => {
@@ -47,6 +48,7 @@ export const login = (error) => {
 const handleFormSubmit = async (e) => {
     e.preventDefault()
     const form = document.querySelector('form')
+    displayLoading()
     const username = form.elements['username'].value
     const password = form.elements['password'].value
     try {
